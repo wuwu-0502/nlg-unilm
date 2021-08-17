@@ -1,0 +1,16 @@
+dataset:
+  article_path: "data/article.txt"
+  summary_path: "data/summary.txt"
+  set_train_num: 300000
+  set_eval_num: -300
+
+model:
+  vocab_path: "state_dict/nezha-cn-base/vocab.txt"
+  model_name: "macbert"
+  model_path: "state_dict/nezha-cn-base/pytorch_model.bin"
+  model_save_path: "state_dict/nezha-cn-base/nezha-cn-base.bin"
+
+solver:
+  batch_size: 16
+  lr: 0.00004
+  seed: 606
