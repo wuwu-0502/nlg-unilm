@@ -143,7 +143,7 @@ class Trainer:
                 # self.eval(epoch)
                 self.bert_model.train()
             if step % 8000 == 0:
-                self.save(config['solver']['model_save_path'])
+                self.save(config['model']['model_save_path'])
 
             # 因为传入了target标签，因此会计算loss并且返回
             predictions, loss = self.bert_model(token_ids,
@@ -168,7 +168,7 @@ class Trainer:
         # 打印训练信息
         print("epoch is " + str(epoch)+". loss is " + str(total_loss) + ". spend time is "+ str(spend_time))
         # 保存模型
-        self.save(config['solver']['model_save_path'])
+        self.save(config['model']['model_save_path'])
 
 
 def rouge(a, b):
