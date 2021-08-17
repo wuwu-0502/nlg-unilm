@@ -1,0 +1,16 @@
+dataset:
+  article_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/unilm/data/article.txt"
+  summary_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/unilm/data/summary.txt"
+  set_train_num: 300000
+  set_eval_num: -300
+
+model:
+  vocab_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/BERT/robert-wwm-ext/vocab.txt"
+  model_name: "roberta"
+  model_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/BERT/robert-wwm-ext/pytorch_model.bin"
+  model_save_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/unilm/state_dict/robert-wwm-ext.bin"
+
+solver:
+  batch_size: 32
+  lr: 0.00001
+  seed: 606
