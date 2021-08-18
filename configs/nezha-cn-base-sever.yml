@@ -6,11 +6,12 @@ dataset:
 
 model:
   vocab_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/BERT/nezha-cn-base/vocab.txt"
-  model_name: "electra"
+  model_name: "nezha"
   model_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/BERT/nezha-cn-base/pytorch_model.bin"
   model_save_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/unilm/state_dict/nezha-cn-base.bin"
 
 solver:
   batch_size: 32
+  epoch: 5
   lr: 0.00004
   seed: 606
