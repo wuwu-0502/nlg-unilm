@@ -41,8 +41,8 @@ def top_k_top_p_filtering(logits, top_k=0, top_p=0.0, filter_value=-float('Inf')
 class Unilm(BasicBert):
     """
     """
-    def __init__(self, word2ix, tokenizer=None):
-        super(Unilm, self).__init__(word2ix=word2ix)
+    def __init__(self, word2ix, tokenizer=None, model_name='roberta'):
+        super(Unilm, self).__init__(word2ix=word2ix, model_name=model_name)
         self.word2ix = word2ix
         if tokenizer is None:
             self.tokenizer = Tokenizer(word2ix)

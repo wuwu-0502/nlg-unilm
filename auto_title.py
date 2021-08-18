@@ -100,7 +100,7 @@ class Trainer:
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         print("device: " + str(self.device))
         # 定义模型
-        self.bert_model = Unilm(word2idx)
+        self.bert_model = Unilm(word2idx, model_name=config['model']['model_name'])
         self.bert_model.set_device(self.device)
         ## 加载预训练的模型参数～  
         self.bert_model.load_pretrain_params(config['model']['model_path'])
@@ -110,7 +110,7 @@ class Trainer:
         self.optimizer = torch.optim.Adam(self.optim_parameters, lr=config['solver']['lr'], weight_decay=1e-3)
         # 声明自定义的数据加载器
         dataset = BertDataset(self.sents_src, self.sents_tgt, word2idx)
-        self.dataloader =  DataLoader(dataset, batch_size=config['solver']['batch_size'], shuffle=True, collate_fn=collate_fn)
+        self.dataloader = DataLoader(dataset, batch_size=config['solver']['batch_size'], shuffle=True, collate_fn=collate_fn)
 
     def train(self, epoch):
         # 一个epoch的训练
@@ -220,9 +220,8 @@ if __name__ == '__main__':
     word2idx = load_chinese_base_vocab(config['model']['vocab_path'], simplfied=False)
 
     trainer = Trainer(config, word2idx)
-    train_epoches = 5
 
-    for epoch in range(train_epoches):
+    for epoch in range(config['solver']['epoch']):
         # 训练一个epoch
         trainer.train(epoch)
 

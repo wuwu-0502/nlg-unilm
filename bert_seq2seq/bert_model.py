@@ -480,16 +480,33 @@ class BertModel(BertPreTrainedModel):
 
 
 class BasicBert(nn.Module):
-    def __init__(self, word2ix):
+    def __init__(self, word2ix, model_name="roberta"):
         super().__init__()
         self.config = ""
         self.word2ix = word2ix
-        self.config = BertConfig(len(self.word2ix))
-        self.bert = BertModel(self.config)
-        self.layer_norm = BertLayerNorm(self.config.hidden_size)
-        self.layer_norm_cond = BertLayerNorm(self.config.hidden_size, conditional=True)
-        self.transform = BertPredictionHeadTransform(self.config)
-        self.decoder = BertLMPredictionHead(self.config, self.bert.embeddings.word_embeddings.weight)
+        self.model_name = model_name
+        if model_name in ['roberta', 'macbert', 'electra']:
+            from bert_seq2seq.bert_model import BertLayerNorm, BertPredictionHeadTransform, BertLMPredictionHead
+            self.config = BertConfig(len(self.word2ix))
+            self.bert = BertModel(self.config)
+            self.layer_norm = BertLayerNorm(self.config.hidden_size)
+            self.layer_norm_cond = BertLayerNorm(self.config.hidden_size, conditional=True)
+            self.transform = BertPredictionHeadTransform(self.config)
+            self.decoder = BertLMPredictionHead(self.config, self.bert.embeddings.word_embeddings.weight)
+
+        elif model_name == "nezha":
+            from bert_seq2seq.nezha_model import NeZhaConfig, NeZhaModel, BertLayerNorm, \
+                BertPredictionHeadTransform, BertLMPredictionHead
+            self.config = NeZhaConfig(vocab_size=len(self.word2ix))
+            self.bert = NeZhaModel(self.config)
+            self.layer_norm = BertLayerNorm(self.config.hidden_size)
+            self.layer_norm_cond = BertLayerNorm(self.config.hidden_size, conditional=True)
+            self.transform = BertPredictionHeadTransform(self.config)
+            self.decoder = BertLMPredictionHead(self.config, self.bert.embeddings.word_embeddings.weight)
+
+        else:
+            raise Exception("model_name_err")
+
         self.device = torch.device("cpu")
 
     def load_pretrain_params(self, pretrain_model_path, keep_tokens=None):
