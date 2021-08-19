@@ -619,7 +619,9 @@ if __name__ == '__main__':
 
     print("~~~~~~~~~~~~~~~~~~~~~~~")
 
-    state_dict = torch.load("../state_dict/nezha-cn-base/pytorch_model.bin")
+    state_dict = torch.load("../state_dict/nezha-base-wwm/pytorch_model.bin")
+    # torch version >=1.6 bin文件保存为zip格式。 解决：
+    # torch.save(state_dict, '../state_dict/nezha-base-wwm/pytorch_model.bin', _use_new_zipfile_serialization=False)
     for k, v in state_dict.items():
         # if "relative" in k:
         print(k)
