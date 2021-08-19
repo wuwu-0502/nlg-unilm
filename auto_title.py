@@ -182,7 +182,7 @@ def rouge(a, b):
     return r1['f'], r2['f'], rl['f']
 
 
-def evaluate(config):
+def evaluate(epoch, config):
     print('-'*50, 'start to evaluate', '-'*50)
     # 加载字典
     word2idx = load_chinese_base_vocab(config['model']['vocab_path'])
@@ -208,7 +208,7 @@ def evaluate(config):
         rouge2 += r2
         rougel += rl
 
-    print(f"ROUGE-1: {rouge1 / 300}     ROUGE-2: {rouge2 / 300}    ROUGE-L: {rougel / 300}")
+    print(f"epoch : {str(epoch)}     ROUGE-1: {rouge1 / 300}     ROUGE-2: {rouge2 / 300}    ROUGE-L: {rougel / 300}")
 
 
 if __name__ == '__main__':
@@ -224,5 +224,4 @@ if __name__ == '__main__':
     for epoch in range(config['solver']['epoch']):
         # 训练一个epoch
         trainer.train(epoch)
-
-    evaluate(config)
+        evaluate(epoch, config)
