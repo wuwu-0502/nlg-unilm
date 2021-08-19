@@ -1,0 +1,17 @@
+dataset:
+  article_path: "data/article.txt"
+  summary_path: "data/summary.txt"
+  set_train_num: 300000
+  set_eval_num: -300
+
+model:
+  vocab_path: "state_dict/nezha-base-wwm/vocab.txt"
+  model_name: "nezha"
+  model_path: "state_dict/nezha-base-wwm/pytorch_model.bin"
+  model_save_path: "state_dict/nezha-base-wwm/nezha-base-wwm.bin"
+
+solver:
+  batch_size: 16
+  epoch: 5
+  lr: 0.00004
+  seed: 606

@@ -1,0 +1,17 @@
+dataset:
+  article_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/unilm/data/article.txt"
+  summary_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/unilm/data/summary.txt"
+  set_train_num: 300000
+  set_eval_num: -300
+
+model:
+  vocab_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/BERT/nezha-base-wwm/vocab.txt"
+  model_name: "nezha"
+  model_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/BERT/nezha-base-wwm/pytorch_model.bin"
+  model_save_path: "/mnt/dl-storage/dg-cephfs-0/group/ai-nlp/houtongpeng/unilm/state_dict/nezha-base-wwm.bin"
+
+solver:
+  batch_size: 32
+  epoch: 5
+  lr: 0.00004
+  seed: 606
