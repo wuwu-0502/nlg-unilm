@@ -201,7 +201,7 @@ def evaluate(epoch, config):
     data_src, data_tgt = data_src[config['dataset']['set_eval_num']:], data_tgt[config['dataset']['set_eval_num']:]
     for text, target in zip(data_src, data_tgt):
         with torch.no_grad():
-            pred = list(bert_model.generate(text, beam_size=1))
+            pred = list(bert_model.generate(text, beam_size=3))
         target = list(target)
         r1, r2, rl = rouge(' '.join(pred), ' '.join(target))
         rouge1 += r1
